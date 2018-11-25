@@ -129,6 +129,9 @@ public class TridentReach {
     Thread.sleep(2000);
 
     System.out.println("REACH: " + drpc.execute("reach", "aaa"));
+    String s = drpc.execute("reach", "foo.com/blog/1");
+    //截取所要结果格式
+    System.out.println(s.substring(2, s.length()-2));
     System.out.println("REACH: " + drpc.execute("reach", "foo.com/blog/1"));
     System.out.println("REACH: " + drpc.execute("reach", "engineering.twitter.com/blog/5"));
 
