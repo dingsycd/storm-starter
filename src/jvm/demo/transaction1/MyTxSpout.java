@@ -17,11 +17,11 @@ import backtype.storm.tuple.Fields;
  */
 public class MyTxSpout implements ITransactionalSpout<MyMeta>{
 	private static final long serialVersionUID = 7610336497170692027L;
-	private Random random = new Random();
 	//数据源
 	Map<Long, String> dbMap = null;
 	
 	public MyTxSpout() {
+		Random random = new Random();
 		dbMap = new HashMap<Long, String>();
 		String[] hosts = {"www.taobao.com"};
 		String[] session_id = {"sdfafsadfasfasdf", "dsfasfasfasdfs", "sdfafasffasfasdf", "dsfasfdasfasdffdas"};
