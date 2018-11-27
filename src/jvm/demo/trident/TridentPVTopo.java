@@ -40,16 +40,16 @@ public static StormTopology buildTopology(LocalDRPC drpc) {
 	  Random random = new Random();
 	  String[] hosts = {"www.taobao.com"};
 	  String[] session_id = {"sdfafsadfasfasdf", "dsfasfasfasdfs", "sdfafasffasfasdf", "dsfasfdasfasdffdas"};
-	  String[] time = {"2014-01-07 08:40:50", "2014-01-07 08:40:51", "2014-01-07 08:40:52", "2014-01-07 08:40:53", 
-			  "2014-01-07 08:40:54", "2014-01-07 08:40:55"};
+	  String[] time = {"2014-01-07 08:40:50", "2014-01-07 08:40:51", "2014-01-05 08:40:52", "2014-01-07 08:40:53", 
+			  "2014-01-05 08:40:54", "2014-01-05 08:40:55"};
     FixedBatchSpout spout = new FixedBatchSpout(new Fields("eachLog"), 3, 
-    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(5)]),
-    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(5)]),
-    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(5)]),
-    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(5)]),
-    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(5)]),
-    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(5)]));
-    spout.setCycle(true);
+    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(6)]),
+    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(6)]),
+    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(6)]),
+    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(6)]),
+    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(6)]),
+    		new Values(hosts[0] + "\t" + session_id[random.nextInt(4)] + "\t" + time[random.nextInt(6)]));
+    spout.setCycle(false);
 
     TridentTopology topology = new TridentTopology();
     TridentState wordCounts = topology.newStream("spout1", spout)
@@ -77,7 +77,7 @@ public static StormTopology buildTopology(LocalDRPC drpc) {
       LocalCluster cluster = new LocalCluster();
       cluster.submitTopology("wordCounter", conf, buildTopology(drpc));
       for (int i = 0; i < 100; i++) {
-        System.out.println("DRPC RESULT: " + drpc.execute("getPV", "2014-01-07 08:40:50"));
+        System.out.println("DRPC RESULT: " + drpc.execute("getPV", "2014-01-07 2014-01-05"));
         Thread.sleep(1000);
       }
     }  

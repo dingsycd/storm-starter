@@ -1,6 +1,7 @@
 package demo.trident.functions;
 
 import backtype.storm.tuple.Values;
+import demo.utils.DateFmt;
 import storm.trident.operation.BaseFunction;
 import storm.trident.operation.TridentCollector;
 import storm.trident.tuple.TridentTuple;
@@ -24,7 +25,7 @@ public class MySplit extends BaseFunction {
       String log = tuple.getString(0);
       String logArr[] = log.split(patton);
       if (logArr.length == 3) {
-    	  collector.emit(new Values(logArr[2], logArr[1]));
+    	  collector.emit(new Values(DateFmt.getCountDate(logArr[2], DateFmt.date_short), logArr[1]));
       } 
 	}
 
